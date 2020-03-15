@@ -1,4 +1,4 @@
-let cs = new WebSocket("ws://localhost:3000");
+let cs = new WebSocket("wss://finish-line-game.herokuapp.com");
 
 cs.onmessage = e => {
   let obj = JSON.parse(e.data);
