@@ -1,3 +1,61 @@
+/* @media screen and (max-width: 1024px) {
+  html {
+    zoom: 85%;
+  }
+
+  #game-wrap {
+    margin: 24% 2% 5% 0;
+  }
+}
+
+@media screen and (max-width: 825px) {
+  html {
+    zoom: 64%;
+  }
+
+  .card {
+    height: 100%;
+  }
+
+  #game-wrap {
+    margin: 28% 2% 5% 2%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    zoom: 48%;
+  }
+
+  .card {
+    margin: 30% 0 3px 0;
+  }
+
+  #game-wrap {
+    margin: 28% 2% 5% 2%;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  html {
+    zoom: 45%;
+  }
+
+  #game-wrap {
+    margin: 32% 2% 5% 2%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  html {
+    zoom: 25%;
+  }
+
+  #game-wrap {
+    margin: 30% 2% 5% 0;
+  }
+} */
+
 #modal-window {
   position: absolute;
   top: 30%;
@@ -117,6 +175,10 @@ ul {
   top: 0;
   left: 0;
   z-index: 1;
+}
+
+.disable-header-clicks {
+  pointer-events: none;
 }
 
 #dice {

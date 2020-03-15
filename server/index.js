@@ -1,7 +1,9 @@
 const server = require("ws").Server;
 
+const port = process.env.PORT || 5500;
+
 const ss = new server({
-  port: 5500
+  port: port
 });
 
 let playerList = [];
@@ -10,6 +12,10 @@ let gameHand = [];
 let length = [];
 ss.on("connection", ws => {
   ss.clients.forEach(client => {
+    console.log(gameLength[0], "gameLength");
+    if (gameLength && ss._server._connections > gameLength[0]) {
+      ws.close();
+    }
     ws.clientId = ss._server._connections - 1;
     client.send(
       JSON.stringify({
@@ -143,7 +149,7 @@ ss.on("connection", ws => {
       );
       client.send(
         JSON.stringify({
-          type: "playerName",
+          type: "playerListChange",
           data: {
             playerList: playerList
           }

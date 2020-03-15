@@ -17,6 +17,10 @@ cs.onmessage = e => {
     case "clientCount":
       clientCount = obj.data.clientCount;
       break;
+    case "playerListChange":
+      playerList = obj.data.playerList;
+      droppedClient();
+      break;
     case "gameLength":
       gameLength = obj.data.gameLength;
       if (clientCount > gameLength) {
@@ -38,6 +42,9 @@ cs.onmessage = e => {
       document
         .getElementById("rollBtn")
         .removeEventListener("click", window.sendOkBtnClick);
+      document
+        .getElementById("header")
+        .classList.remove("disable-header-clicks");
       switch (obj.data.listenerType) {
         case "getDiceRoll":
           document
@@ -111,6 +118,17 @@ function sendGameLength() {
   );
 }
 
+function droppedClient() {
+  let activePlayers = players.filter(player => {
+    return player.isDisconnected === false;
+  });
+  activePlayers.forEach(player => {
+    if (playerList.indexOf(player.name) === -1) {
+      player.isDisconnected = true;
+    }
+  });
+}
+
 let currentPlayer = 0,
   deck = [],
   hand = [],
@@ -120,6 +138,7 @@ let currentPlayer = 0,
   activePlayer = 0,
   clientCount = 0,
   clientId = 0,
+  droppedPlayerName = "",
   gameLength = -1,
   jokerCount = 0,
   jokerOnePosition = 0,
@@ -530,7 +549,6 @@ function hasValidMove(dieMove, previousMarkerPosition, currentCard) {
   // remember moves have already been made, just not displayed yet
   if (players[currentPlayer][markerToMove] < handLength) {
     getSpecialCards(currentCard);
-
     if (userSpecialCards.length > 0 && movesRemaining < 1) {
       processSpecialCards();
     } else if (userSpecialCards.length === 0 && movesRemaining < 1) {
@@ -699,6 +717,9 @@ function processSpecialCards() {
           document
             .getElementById("rollBtn")
             .removeEventListener("click", window.sendOkBtnClick);
+          document
+            .getElementById("header")
+            .classList.remove("disable-header-clicks");
           switch (obj.data.listenerType) {
             case "getDiceRoll":
               document
@@ -914,7 +935,7 @@ function sendActivatePlayerBtn(listenerType, stayOnCurrentPlayer = false) {
     .getElementById("rollBtn")
     .removeEventListener("click", window.getDiceRoll);
   document.getElementById("rollBtn").classList.remove("active-btn");
-  console.log("running sendActivatePlayerBtn");
+  document.getElementById("header").classList.add("disable-header-clicks");
 
   activePlayer = currentPlayer;
   if (!stayOnCurrentPlayer) {
@@ -956,6 +977,7 @@ function getPlayerNames(playersArr) {
       this.markerC = -1;
       this.name = name;
       this.isFinished = false;
+      this.isDisconnected = false;
       players.push(this);
     }
   }
