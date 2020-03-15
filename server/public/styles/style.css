@@ -1,0 +1,639 @@
+/* @media screen and (max-width: 1024px) {
+  html {
+    zoom: 85%;
+  }
+
+  #game-wrap {
+    margin: 24% 2% 5% 0;
+  }
+}
+
+@media screen and (max-width: 825px) {
+  html {
+    zoom: 64%;
+  }
+
+  .card {
+    height: 100%;
+  }
+
+  #game-wrap {
+    margin: 28% 2% 5% 2%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    zoom: 48%;
+  }
+
+  .card {
+    margin: 30% 0 3px 0;
+  }
+
+  #game-wrap {
+    margin: 28% 2% 5% 2%;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  html {
+    zoom: 45%;
+  }
+
+  #game-wrap {
+    margin: 32% 2% 5% 2%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  html {
+    zoom: 25%;
+  }
+
+  #game-wrap {
+    margin: 30% 2% 5% 0;
+  }
+} */
+
+#modal-window {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  z-index: 2;
+}
+
+.modal-content {
+  padding: 3%;
+  background-color: #fff;
+  border: 1px solid #222;
+  border-radius: 4px;
+}
+
+.modal-message {
+  font-size: 22px;
+  text-align: center;
+}
+
+.modal-close {
+  font-size: 36px;
+  font-weight: 600;
+  float: right;
+}
+
+@font-face {
+  font-family: "playing_cardsregular";
+  src: url("../fonts/cards-webfont.woff2") format("woff2"),
+    url("../fonts/cards-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.die-shake {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.blinking {
+  animation: blinkingText 0.8s infinite;
+}
+@keyframes blinkingText {
+  0% {
+    opacity: 1;
+  }
+  49% {
+    color: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body {
+  height: 100%;
+  margin: 0 3%;
+  background-color: #ededed;
+  background-image: url("../images/dice.jpg");
+  background-size: 40%;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+#header {
+  user-select: none;
+  padding-bottom: 2%;
+  width: 100%;
+  text-align: center;
+  background-image: linear-gradient(
+    rgba(160, 160, 160, 1),
+    rgba(200, 200, 200, 0.8),
+    rgba(255, 255, 255, 1)
+  );
+  box-shadow: 4px 4px 8px gray;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.disable-header-clicks {
+  pointer-events: none;
+}
+
+#dice {
+  height: 0;
+}
+
+#elements-container {
+  margin-top: 7%;
+}
+
+#prompts {
+  margin-top: 10%;
+}
+
+#rollBtn {
+  margin: 4% auto 2% auto;
+}
+
+#markers {
+  margin-bottom: 0;
+}
+
+#players-names {
+  height: 0;
+  margin-bottom: 3%;
+}
+
+.ok-btn {
+  margin: 1% 0 0 0 !important;
+}
+
+.active-btn {
+  background-color: rgba(19, 212, 67, 0.685);
+}
+
+#game-wrap {
+  margin-top: 21%;
+}
+
+input[name="game-length"] {
+  width: 60%;
+  display: inline-block;
+}
+
+.game-length-input-container {
+  width: 60%;
+  border-radius: 3px;
+  opacity: 0.85;
+  margin: 0 auto 1% auto;
+  background-color: rgb(223, 236, 236);
+}
+
+.game-length-input {
+  margin: 2% 3% 2% 3%;
+  display: inline-block;
+}
+
+input {
+  width: 620px;
+  font-size: 132%;
+}
+
+#dice h1 {
+  font-size: 400%;
+  margin-bottom: 1%;
+}
+
+.bullet {
+  display: inline-block;
+  cursor: pointer;
+  color: green;
+  font-size: 1000%;
+  vertical-align: text-bottom;
+  line-height: 53%;
+}
+
+#content {
+  margin-top: 0;
+}
+
+.red-die {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 7em;
+  color: red;
+}
+
+.black-die {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 7em;
+}
+
+.markers {
+  padding-left: 27px;
+  line-height: 0.5em;
+}
+
+.markers span {
+  cursor: pointer;
+  font-size: 320%;
+  letter-spacing: 0.3em;
+}
+
+#red-marker {
+  color: tomato;
+  margin-right: -0.2em;
+  font-size: 150px;
+  line-height: 0.28em;
+  vertical-align: top;
+}
+
+#green-marker {
+  color: mediumseagreen;
+  font-size: 57px;
+  line-height: 0.85em;
+  vertical-align: top;
+}
+
+#blue-marker {
+  color: mediumpurple;
+  font-size: 80px;
+  line-height: 0.4em;
+  vertical-align: top;
+}
+
+.marker-a {
+  color: tomato;
+  font-size: 38px;
+  line-height: 0.38em;
+  vertical-align: top;
+}
+
+.marker-b {
+  font-size: 23px;
+  line-height: 0.8em;
+  color: mediumseagreen;
+}
+
+.marker-c {
+  font-size: 33px;
+  line-height: 0.36em;
+  color: mediumpurple;
+}
+
+.btn {
+  font-size: 16px;
+  padding: 7px 18px 7px 18px;
+}
+
+#game-wrap {
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  grid-template-rows: 1fr;
+  padding: 8% 0;
+}
+
+#dummy {
+  visibility: hidden;
+}
+
+#hand {
+  position: relative;
+  margin: 0 -40px;
+  display: grid;
+  grid-template-columns: repeat(10, auto);
+  font-family: "playing_cardsregular";
+}
+
+.container9,
+.container27,
+.container45 {
+  grid-column: 2;
+}
+
+.container26,
+.container44 {
+  grid-column: 1;
+}
+
+.container8,
+.container17,
+.container26,
+.container35,
+.container44,
+.container53 {
+  position: relative;
+  top: -5.8em;
+}
+
+.card {
+  margin: 20% 0 3px 0;
+  height: 74px;
+  overflow: hidden;
+  font-size: 620%;
+  text-align: center;
+  background-color: #fff;
+  text-shadow: 1px 1px 4px rgba(200, 200, 200, 1);
+}
+
+.red {
+  color: red;
+}
+
+.black {
+  color: black;
+}
+
+.dim {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.d li {
+  height: 1.2em;
+  line-height: 1.2em;
+  color: #aaa;
+}
+
+.players-left {
+  position: absolute;
+  width: 10%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  text-align: right;
+}
+
+.players-left li {
+  padding-right: 8%;
+}
+
+.players-right {
+  position: absolute;
+  width: 10%;
+  left: 90%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  text-align: left;
+}
+
+.players-right li {
+  padding-left: 8%;
+}
+
+.names-spacer {
+  height: 256px;
+}
+
+.players-left .container:nth-child(odd) {
+  visibility: hidden;
+}
+
+.players-right .container:nth-child(even) {
+  visibility: hidden;
+}
+
+.p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 200%;
+  text-align: center;
+}
+
+.p li {
+  height: 0.6em;
+  line-height: 0;
+  padding-left: 4px;
+  letter-spacing: 0.03em;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ccc;
+  background-color: #eef0e2;
+}
+
+.faded {
+  opacity: 0.3;
+}
+
+.p li.row-highlight {
+  background-color: #b0d3b2ce;
+}
+
+.p li.row-highlight.winner {
+  background-color: #000 !important;
+}
+
+.d li.highlight {
+  font-weight: 600;
+  color: green;
+}
+
+.container0 {
+  order: 53;
+}
+.container1 {
+  order: 52;
+}
+.container2 {
+  order: 51;
+}
+.container3 {
+  order: 50;
+}
+.container4 {
+  order: 49;
+}
+.container5 {
+  order: 48;
+}
+.container6 {
+  order: 47;
+}
+.container7 {
+  order: 46;
+}
+.container8 {
+  order: 45;
+}
+
+.container9 {
+  order: 36;
+}
+.container10 {
+  order: 37;
+}
+.container11 {
+  order: 38;
+}
+.container12 {
+  order: 39;
+}
+.container13 {
+  order: 40;
+}
+.container14 {
+  order: 41;
+}
+.container15 {
+  order: 42;
+}
+.container16 {
+  order: 43;
+}
+.container17 {
+  order: 44;
+}
+
+.container18 {
+  order: 35;
+}
+.container19 {
+  order: 34;
+}
+.container20 {
+  order: 33;
+}
+.container21 {
+  order: 32;
+}
+.container22 {
+  order: 31;
+}
+.container23 {
+  order: 30;
+}
+.container24 {
+  order: 29;
+}
+.container25 {
+  order: 28;
+}
+.container26 {
+  order: 27;
+}
+
+.container27 {
+  order: 18;
+}
+.container28 {
+  order: 19;
+}
+.container29 {
+  order: 20;
+}
+.container30 {
+  order: 21;
+}
+.container31 {
+  order: 22;
+}
+.container32 {
+  order: 23;
+}
+.container33 {
+  order: 24;
+}
+.container34 {
+  order: 25;
+}
+.container35 {
+  order: 26;
+}
+
+.container36 {
+  order: 17;
+}
+.container37 {
+  order: 16;
+}
+.container38 {
+  order: 15;
+}
+.container39 {
+  order: 14;
+}
+.container40 {
+  order: 13;
+}
+.container41 {
+  order: 12;
+}
+.container42 {
+  order: 11;
+}
+.container43 {
+  order: 10;
+}
+.container44 {
+  order: 9;
+}
+
+.container45 {
+  order: 0;
+}
+.container46 {
+  order: 1;
+}
+.container47 {
+  order: 2;
+}
+.container48 {
+  order: 3;
+}
+.container49 {
+  order: 4;
+}
+.container50 {
+  order: 5;
+}
+.container51 {
+  order: 6;
+}
+.container52 {
+  order: 7;
+}
+.container53 {
+  order: 8;
+}
+.container54 {
+  order: 54;
+}

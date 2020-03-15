@@ -1,10 +1,12 @@
-const server = require("ws").Server;
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 3000;
+const server = app.listen(port);
+app.use(express.static("public"));
 
-const port = process.env.PORT || 5500;
+const socket = require("ws").Server;
 
-const ss = new server({
-  port: port
-});
+const ss = new socket({ server: server });
 
 let playerList = [];
 let gameLength = [];
@@ -12,23 +14,24 @@ let gameHand = [];
 let length = [];
 ss.on("connection", ws => {
   ss.clients.forEach(client => {
+    console.log(ss.clients.size);
     console.log(gameLength[0], "gameLength");
-    if (gameLength && ss._server._connections > gameLength[0]) {
+    if (gameLength && ss.clients.size > gameLength[0]) {
       ws.close();
     }
-    ws.clientId = ss._server._connections - 1;
+    ws.clientId = ss.clients.size - 1;
     client.send(
       JSON.stringify({
         type: "clientCount",
         data: {
-          clientCount: ss._server._connections,
-          clientId: ss._server._connections - 1
+          clientCount: ss.clients.size,
+          clientId: ss.clients.size - 1
         }
       })
     );
   });
   console.log("New Connection");
-  console.log(ss._server._connections);
+  console.log(ss.clients.size);
 
   ws.on("message", message => {
     let obj = JSON.parse(message);
@@ -144,7 +147,7 @@ ss.on("connection", ws => {
       client.send(
         JSON.stringify({
           type: "clientCount",
-          data: { clientCount: ss._server._connections }
+          data: { clientCount: ss.clients.size }
         })
       );
       client.send(
@@ -157,6 +160,6 @@ ss.on("connection", ws => {
       );
     });
     console.log("Connection CLOSED");
-    console.log(ss._server._connections);
+    console.log(ss.clients.size);
   });
 });
