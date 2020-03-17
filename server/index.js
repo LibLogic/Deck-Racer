@@ -4,9 +4,17 @@ const port = process.env.PORT || 3000;
 const server = app.listen(port);
 app.use(express.static("public"));
 
+<<<<<<< HEAD
 const socket = require("ws").Server;
 
 const ss = new socket({ server: server });
+=======
+const port = process.env.PORT || 5500;
+
+const ss = new server({
+  port: port
+});
+>>>>>>> webSockets_v4
 
 let playerList = [];
 let gameLength = [];
@@ -14,12 +22,20 @@ let gameHand = [];
 let length = [];
 ss.on("connection", ws => {
   ss.clients.forEach(client => {
+<<<<<<< HEAD
     console.log(ss.clients.size);
     console.log(gameLength[0], "gameLength");
     if (gameLength && ss.clients.size > gameLength[0]) {
       ws.close();
     }
     ws.clientId = ss.clients.size - 1;
+=======
+    console.log(gameLength[0], "gameLength");
+    if (gameLength && ss._server._connections > gameLength[0]) {
+      ws.close();
+    }
+    ws.clientId = ss._server._connections - 1;
+>>>>>>> webSockets_v4
     client.send(
       JSON.stringify({
         type: "clientCount",
