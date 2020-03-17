@@ -7,16 +7,11 @@
     <title>Finish Line</title>
     <link rel="shortcut icon" href="images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
-    <link rel="stylesheet" type="text/css" media="(max-width: 1024px)" href="styles/l-tablet.css" />    
-    <link rel="stylesheet" type="text/css" media="(max-width: 825px)" href="styles/s-tablet.css" />
-    <link rel="stylesheet" type="text/css" media="(max-width: 768px)" href="styles/l-mobile.css" />
-    <link rel="stylesheet" type="text/css" media="(max-width: 570px)" href="styles/m-mobile.css" />
-    <link rel="stylesheet" type="text/css" media="(max-width: 420px)" href="styles/s-mobile.css" />
   </head>
   <body id="bg-image">
       <div id="header" class="show-header">
+        <div id="elements-container"></div>
         <div id="dice"><h1>Finish Line</h1></div>
-        <div id="elements-container">
           <button id="begin-btn" class="btn">Click To Begin</button>
           <h2 id="prompts" class="hidden"></h2>
           <div class="game-length-input-container hidden">
@@ -44,7 +39,7 @@
               name="user-names"
               autofocus
             />
-            <button type="submit" class="btn" onclick="playerQueue()">
+            <button type="submit" class="submit-btn"  onclick="playerQueue()">
               Submit
             </button>
           </div>

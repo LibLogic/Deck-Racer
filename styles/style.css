@@ -1,61 +1,3 @@
-/* @media screen and (max-width: 1024px) {
-  html {
-    zoom: 85%;
-  }
-
-  #game-wrap {
-    margin: 24% 2% 5% 0;
-  }
-}
-
-@media screen and (max-width: 825px) {
-  html {
-    zoom: 64%;
-  }
-
-  .card {
-    height: 100%;
-  }
-
-  #game-wrap {
-    margin: 28% 2% 5% 2%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  html {
-    zoom: 48%;
-  }
-
-  .card {
-    margin: 30% 0 3px 0;
-  }
-
-  #game-wrap {
-    margin: 28% 2% 5% 2%;
-  }
-}
-
-@media screen and (max-width: 570px) {
-  html {
-    zoom: 45%;
-  }
-
-  #game-wrap {
-    margin: 32% 2% 5% 2%;
-  }
-}
-
-@media screen and (max-width: 420px) {
-  html {
-    zoom: 25%;
-  }
-
-  #game-wrap {
-    margin: 30% 2% 5% 0;
-  }
-} */
-
 #modal-window {
   position: absolute;
   top: 30%;
@@ -162,7 +104,7 @@ ul {
 
 #header {
   user-select: none;
-  padding-bottom: 2%;
+  padding: 0 0 2em 0;
   width: 100%;
   text-align: center;
   background-image: linear-gradient(
@@ -182,16 +124,16 @@ ul {
 }
 
 #dice {
-  height: 0;
+  height: 120px;
 }
 
-#elements-container {
-  margin-top: 7%;
-}
+/* #elements-container {
+  margin: 7em 0 1em 0;
+} */
 
-#prompts {
+/* #prompts {
   margin-top: 10%;
-}
+} */
 
 #rollBtn {
   margin: 4% auto 2% auto;
@@ -202,8 +144,7 @@ ul {
 }
 
 #players-names {
-  height: 0;
-  margin-bottom: 3%;
+  margin: 0 auto;
 }
 
 .ok-btn {
@@ -214,8 +155,12 @@ ul {
   background-color: rgba(19, 212, 67, 0.685);
 }
 
+.active-btn:focus {
+  outline: rgba(19, 212, 67, 0.685);
+}
+
 #game-wrap {
-  margin-top: 21%;
+  margin-top: 16.5em;
 }
 
 input[name="game-length"] {
@@ -224,7 +169,7 @@ input[name="game-length"] {
 }
 
 .game-length-input-container {
-  width: 60%;
+  width: 80%;
   border-radius: 3px;
   opacity: 0.85;
   margin: 0 auto 1% auto;
@@ -237,13 +182,13 @@ input[name="game-length"] {
 }
 
 input {
-  width: 620px;
+  width: 60%;
   font-size: 132%;
 }
 
 #dice h1 {
-  font-size: 400%;
-  margin-bottom: 1%;
+  font-size: 5em;
+  margin: 0;
 }
 
 .bullet {
@@ -307,24 +252,25 @@ input {
 
 .marker-a {
   color: tomato;
-  font-size: 38px;
-  line-height: 0.38em;
+  font-size: 100%;
+  line-height: 0.46em;
   vertical-align: top;
 }
 
 .marker-b {
-  font-size: 23px;
-  line-height: 0.8em;
+  font-size: 65%;
+  line-height: 0.9em;
   color: mediumseagreen;
 }
 
 .marker-c {
-  font-size: 33px;
-  line-height: 0.36em;
+  font-size: 88%;
+  line-height: 0.55em;
   color: mediumpurple;
 }
 
-.btn {
+.btn,
+.submit-btn {
   font-size: 16px;
   padding: 7px 18px 7px 18px;
 }
@@ -366,14 +312,14 @@ input {
 .container44,
 .container53 {
   position: relative;
-  top: -5.8em;
+  top: -40%;
 }
 
 .card {
   margin: 20% 0 3px 0;
   height: 74px;
   overflow: hidden;
-  font-size: 620%;
+  font-size: 800%;
   text-align: center;
   background-color: #fff;
   text-shadow: 1px 1px 4px rgba(200, 200, 200, 1);
@@ -403,6 +349,7 @@ input {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   text-align: right;
+  z-index: 1;
 }
 
 .players-left li {
@@ -462,9 +409,126 @@ input {
   background-color: #000 !important;
 }
 
+.p li.row-highlight.disconnected {
+  background-color: rgb(245, 241, 19) !important;
+}
+
+.d {
+  font-size: 100%;
+}
+
 .d li.highlight {
   font-weight: 600;
   color: green;
+}
+
+@media only screen and (max-width: 1800px) {
+  .card {
+    font-size: 620%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .card {
+    font-size: 5em;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .card {
+    font-size: 4.9em;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .card {
+    font-size: 4.3em;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  @media screen and (orientation: landscape) {
+    #header {
+      zoom: 0.5;
+    }
+    #game-wrap {
+      margin-top: 8em;
+    }
+  }
+
+  .card {
+    font-size: 3.9em;
+  }
+
+  .p {
+    font-size: 160%;
+  }
+
+  .d {
+    font-size: 80%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .card {
+    height: auto;
+    font-size: 3.5em;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .p {
+    font-size: 100%;
+  }
+  .d {
+    font-size: 45%;
+  }
+  .card {
+    font-size: 3.1em;
+  }
+  .game-length-input {
+    margin: 0 0 0 0;
+  }
+  .game-length-input-container {
+    padding: 8px 0;
+  }
+}
+
+@media only screen and (max-width: 625px) {
+  .p {
+    font-size: 100%;
+  }
+  .d {
+    font-size: 50%;
+  }
+  .card {
+    font-size: 2.8em;
+  }
+  .game-length-input-container {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 570px) {
+  .card {
+    font-size: 2.4em;
+  }
+  #dice h1 {
+    font-size: 65px;
+    margin-top: 30px;
+  }
+  #prompts {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  #dice h1 {
+    font-size: 55px;
+  }
+  .game-length-input-container {
+    width: 65%;
+  }
 }
 
 .container0 {
